@@ -14,7 +14,7 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #999;
+    color: navy;
 }
 a:hover {
     text-decoration: underline;
@@ -41,4 +41,4 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
-Don't forget to commit the new CSS fi
+
