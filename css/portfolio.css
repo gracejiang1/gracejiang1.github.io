@@ -28,6 +28,11 @@
           transform: translate(-50%,-50%);
 }
 
+.column img.portrait {
+  width:100%;
+  height:auto;
+}
+
 /* The Modal (background) */
 .modal {
   display: none;
