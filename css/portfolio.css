@@ -11,8 +11,11 @@
 }
 
 .column {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow:hidden;
   float: left;
-  width: 25%;
 }
 
 /* The Modal (background) */
