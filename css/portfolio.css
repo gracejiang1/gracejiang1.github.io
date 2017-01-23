@@ -14,12 +14,12 @@
   position: relative;
   width: 200px;
   height: 200px;
-  /*overflow:hidden;*/
+  overflow:hidden;
 }
 
 .column img {
   position:absolute;
-  left:50%:
+  left:50%;
   top:50%;
   height:100%;
   width: auto;
