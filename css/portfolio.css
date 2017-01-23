@@ -1,3 +1,5 @@
+@import url("main.css");
+
 .row > .column {
   padding: 0 8px;
 }
