@@ -1,4 +1,4 @@
-<script>
+
 function openModal() {
   document.getElementById('myModal').style.display = "block";
 }
@@ -35,4 +35,3 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
   captionText.innerHTML = dots[slideIndex-1].alt;
 }
-</script>
