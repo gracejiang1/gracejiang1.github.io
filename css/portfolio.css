@@ -1,7 +1,7 @@
 @import url("main.css");
 
 .row > .column {
-  padding: 0 20px;
+  padding: 0 8px;
 }
 
 .row:after {
@@ -11,6 +11,7 @@
 }
 
 .column {
+  float:left;
   position: relative;
   width: 200px;
   height: 200px;
