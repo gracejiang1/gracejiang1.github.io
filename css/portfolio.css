@@ -1,5 +1,11 @@
 @import url("main.css");
 
+
+
+{
+  box-sizing: border-box;
+}
+
 .row > .column {
   padding: 0 8px;
 }
