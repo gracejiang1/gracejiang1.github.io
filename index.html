@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My New Site</title>
+  <meta name="description" content="A clean, fast personal site hosted on GitHub Pages." />
+  <meta property="og:title" content="My New Site" />
+  <meta property="og:description" content="A clean, fast personal site hosted on GitHub Pages." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:image" content="https://example.com/assets/og.png" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <nav class="nav">
+      <a class="brand" href="/">My New Site</a>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <h1>Hey, I'm <span class="accent">Your Name</span>.</h1>
+      <p>A short line about what you do. Keep it simple and human.</p>
+      <div class="cta">
+        <a class="btn" href="#projects">See Projects</a>
+        <a class="btn ghost" href="#contact">Get in Touch</a>
+      </div>
+    </section>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <h2>About</h2>
+      <p>Write a few sentences about yourself, your goals, and what you care about. This site is entirely static—no build tools needed.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul class="cards">
+        <li class="card">
+          <h3>Project One</h3>
+          <p>What it is, why it matters, your role, and a link.</p>
+          <a class="inline-btn" href="#" target="_blank" rel="noopener">View</a>
+        </li>
+        <li class="card">
+          <h3>Project Two</h3>
+          <p>Another little highlight. Keep it concrete.</p>
+          <a class="inline-btn" href="#" target="_blank" rel="noopener">View</a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Drop a message. This demo uses Formspree—replace the action URL with your own.</p>
+      <form class="contact" action="https://formspree.io/f/your-form-id" method="POST">
+        <label for="name">Name</label>
+        <input id="name" name="name" required />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+        <label for="msg">Message</label>
+        <textarea id="msg" name="message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send</button>
+      </form>
+      <p class="muted">Prefer email? yourname [at] example.com</p>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p>© <span id="year"></span> Your Name. Built on GitHub Pages.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
