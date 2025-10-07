@@ -3,80 +3,286 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My New Site</title>
-  <meta name="description" content="A clean, fast personal site hosted on GitHub Pages." />
-  <meta property="og:title" content="My New Site" />
-  <meta property="og:description" content="A clean, fast personal site hosted on GitHub Pages." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://example.com/" />
-  <meta property="og:image" content="https://example.com/assets/og.png" />
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css" />
+  <title>Grace — Home</title>
+  <meta name="description" content="A minimalist, old-school personal site." />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --ink: #111;
+      --ink-soft:#333;
+      --line:#000;
+      --link:#00f;
+      --visited:#551a8b;
+      --tile: #ffffff;
+      --shadow:#bdbdbd;
+      --maxw: 760px;
+      --ee: #2E7D32;
+      --misc: #8B4513;
+      --hiking: #00695C;
+      --reading: #1E3A8A;
+      --about: #5A5A5A;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia, serif;}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
+
+    header{border-bottom:2px solid var(--line);padding-bottom:8px;margin-bottom:16px;}
+    header h1{font-size:28px;margin:0 0 6px 0;}
+    header p{margin:0;color:var(--ink-soft);}    
+
+    .skip-label {font-weight:bold; margin:12px 0 4px;}
+
+    .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:8px 0 8px;}
+    .tile{position:relative;display:block;background:var(--tile);border:2px solid var(--line);padding:16px 16px 16px 20px;text-decoration:none;color:var(--ink);
+      box-shadow:6px 6px 0 var(--shadow);overflow:hidden}
+    .tile h2{margin:0 0 6px 0;font-size:18px;}
+    .tile p{margin:0;color:var(--ink-soft);}    
+    .tile:hover{background:#f7f7f7}
+    .tile[class*="stripe-"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px}
+    .tile.stripe-ee::before{background:var(--ee)}
+    .tile.stripe-misc::before{background:var(--misc)}
+    .tile.stripe-hiking::before{background:var(--hiking)}
+    .tile.stripe-reading::before{background:var(--reading)}
+    .tile.stripe-about::before{background:var(--about)}
+
+    section{border-top:2px solid var(--line);margin-top:40px;padding-top:20px;background:var(--tile);} 
+    section h2{margin:0 0 8px 0;font-size:22px;}
+    section[class*="stripe-"]{border-left:10px solid var(--line);padding-left:14px}
+    section.stripe-ee{border-left-color:var(--ee)}
+    section.stripe-misc{border-left-color:var(--misc)}
+    section.stripe-hiking{border-left-color:var(--hiking)}
+    section.stripe-reading{border-left-color:var(--reading)}
+    section.stripe-about{border-left-color:var(--about)}
+
+    .backtop{display:inline-block;margin-top:12px;color:var(--link);}    
+
+    ul.clean{list-style: square;padding-left:18px;margin:6px 0 0 0;}
+    li + li{margin-top:6px;}
+
+    footer{border-top:2px solid var(--line);margin-top:28px;padding-top:12px;color:#444;font-size:14px;background:var(--bg);}
+    .muted{color:#666}
+
+    @media (max-width:480px){
+      header h1{font-size:24px}
+      .tile{padding:14px 14px 14px 18px}
+    }
+    .year + .year{ margin-top:24px; }
+    .year-heading{ font-size:18px; margin:10px 0 6px 0; display:inline-block; border-bottom:2px solid var(--line); padding:0 6px 2px 0; }
+
+    .project-card{display:flex;align-items:center;gap:12px;margin:14px 0;padding:10px;border:1px solid var(--line);background:var(--tile);box-shadow:3px 3px 0 var(--shadow);}
+    .project-card img.thumb{width:100%;height:100%;object-fit:cover;display:block;}
+    .project-card .video-thumb{width:120px;height:120px;border:2px solid var(--line);transition:box-shadow 0.3s ease;cursor:pointer;position:relative;overflow:hidden;}
+    .project-card .video-thumb video{width:100%;height:100%;object-fit:cover;display:block;}
+    .project-card .thumb-wrap:hover, .project-card .video-thumb:hover{position:relative;box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+    .project-card .thumb-wrap:hover::after, .project-card .video-thumb:hover::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.4);}
+    .project-card .proj-text{flex:1;}
+
+    .project-card .thumb-wrap{width:120px;height:120px;border:2px solid var(--line);position:relative;overflow:hidden;cursor:pointer;transition:box-shadow 0.3s ease;}
+
+    .video-thumb::after {
+      content: "▶";
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+      background: rgba(0,0,0,0.6);
+      border-radius: 3px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 24px;
+    }
+
+    .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:9999;}
+    .lightbox-content{max-width:50%;max-height:50%;}
+    .lightbox-content img,.lightbox-content video{width:100%;height:auto;}
+  </style>
 </head>
 <body>
-  <header class="container">
-    <nav class="nav">
-      <a class="brand" href="/">My New Site</a>
-      <div class="links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+  <div class="wrap">
+    <header>
+      <h1>Grace Jiang</h1>
+      <p>Welcome! I live in the Bay Area.</p>
+    </header>
+
+    <main>
+      <div class="skip-label">Skip to section:</div>
+      <div class="tiles">
+        <a class="tile stripe-ee" href="#ee-projects">
+          <h2>EE Projects</h2>
+          <p>Electronics, test rigs, and signal work (magic smoke included).</p>
+        </a>
+        <a class="tile stripe-misc" href="#misc-projects">
+          <h2>Misc Projects</h2>
+          <p>More things I'm proud of.</p>
+        </a>
+        <a class="tile stripe-hiking" href="#hiking">
+          <h2>Hiking</h2>
+          <p>Trips, routes, and maps.</p>
+        </a>
+        <a class="tile stripe-reading" href="#reading">
+          <h2>Reading</h2>
+          <p>Notes, highlights, and what I’m into lately.</p>
+        </a>
+        <a class="tile stripe-about" href="#about">
+          <h2>About</h2>
+          <p>Short intro and how to reach me.</p>
+        </a>
       </div>
-    </nav>
-    <section class="hero">
-      <h1>Hey, I'm <span class="accent">Grace</span>.</h1>
-      <p>A short line about what you do. Keep it simple and human.</p>
-      <div class="cta">
-        <a class="btn" href="#projects">See Projects</a>
-        <a class="btn ghost" href="#contact">Get in Touch</a>
+    </main>
+
+    <section id="ee-projects" class="stripe-ee">
+      <h2>EE Projects</h2>
+      <div class="year" id="ee2025">
+        <h3 class="year-heading">2025</h3>
+        <ul class="clean">
+          <li><strong>PCIe routing study</strong> — return paths, eye diagrams, and TDR notes. <a href="#">write-up</a></li>
+          <li><strong>Low-power weather monitor for hikes</strong> — sensors and barometer design. <a href="#">repo</a></li>
+          <li><strong>RC Snubbers for EMI</strong> — analysis and simulation of snubber networks.</li>
+        </ul>
+      </div>
+      <div class="year" id="ee2024">
+        <h3 class="year-heading">2024</h3>
+        <ul class="clean">
+          <li><strong>Battery-simulator HIL rig</strong> — Raspberry Pi control and current-sense monitors. <a href="#">overview</a></li>
+          <li><strong>RF test checklist</strong> — TRP/EIRP/OBW lab prep. <a href="#">pdf</a></li>
+        </ul>
+      </div>
+      <div class="year" id="ee2023">
+        <h3 class="year-heading">2023</h3>
+        <ul class="clean">
+          <li><strong>Transimpedance Amplifiers</strong> — notes on design, gain-bandwidth, and noise optimization.</li>
+        </ul>
+      </div>
+      <div class="year" id="ee2021">
+        <h3 class="year-heading">2021</h3>
+        <ul class="clean">
+          <li><strong>Things to know about USB-C</strong> — Type-C architectures, design considerations, etc.</li>
+        </ul>
       </div>
     </section>
-  </header>
 
-  <main class="container">
-    <section id="about">
-      <h2>About</h2>
-      <p>Write a few sentences about yourself, your goals, and what you care about. This site is entirely static—no build tools needed.</p>
+    <section id="misc-projects" class="stripe-misc">
+      <h2>Misc Projects</h2>
+      <div class="year" id="misc2025">
+        <h3 class="year-heading">2025</h3>
+        <div class="project-card">
+          <div class="thumb-wrap"><img src="images/welding.PNG" alt="Welding photo" class="thumb"></div>
+          <div class="proj-text">
+            <strong>Practiced welding and metalworking</strong> by helping out with the <a href="https://www.flaminglotus.com/" target="_blank" rel="noopener">Flaming Lotus Girls</a>
+          </div>
+        </div>
+      </div>
+      <div class="year" id="misc2021">
+        <h3 class="year-heading">2021</h3>
+        <div class="project-card">
+          <div class="video-thumb">
+            <video src="videos/rubens_tube.mov" muted></video>
+          </div>
+          <div class="proj-text">
+            <strong>Rubens Tube</strong> — a tube of gas but with high ratio of (how cool it looks/effort required) was large.<br><br>Future ideas:<br>• Multiple tubes of differing lengths to make standing waves at diff frequencies<br>• Circular tube<br>• 2D array of holes inspired by Veritasium video<br>• Glass tubes<br>• Somehow trigger release of sodium etc to make colored flames based on frequency
+          </div>
+        </div>
+      </div>
+      <div class="year" id="misc2018">
+        <h3 class="year-heading">2018</h3>
+        <div class="project-card">
+          <div class="thumb-wrap"><img src="images/masspec.jpg" alt="MasSpec Pen photo" class="thumb"></div>
+          <div class="proj-text">
+            <strong>MasSpec Pen</strong> — a handheld mass spectrometry tool for rapid tissue analysis. 
+            <a href="https://en.wikipedia.org/wiki/MasSpec_Pen" target="_blank" rel="noopener">Wikipedia</a> | 
+            <a href="https://patents.google.com/patent/US20250251323A1" target="_blank" rel="noopener">Patent US20250251323A1</a>
+          </div>
+        </div>
+      <div class="year" id="misc2018b">
+        <h3 class="year-heading">2018</h3>
+        <div class="project-card">
+          <div class="thumb-wrap"><img src="images/two_photon.png" alt="Two-photon microscopy visualization" class="thumb"></div>
+          <div class="proj-text">
+            <strong>Visualizing 2-photon microscopy data in a new way</strong>
+          </div>
+        </div>
+      </div>
+      </div>
     </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul class="cards">
-        <li class="card">
-          <h3>Project One</h3>
-          <p>What it is, why it matters, your role, and a link.</p>
-          <a class="inline-btn" href="#" target="_blank" rel="noopener">View</a>
-        </li>
-        <li class="card">
-          <h3>Project Two</h3>
-          <p>Another little highlight. Keep it concrete.</p>
-          <a class="inline-btn" href="#" target="_blank" rel="noopener">View</a>
-        </li>
+    <section id="hiking" class="stripe-hiking">
+      <h2>Hiking</h2>
+      <ul class="clean">
+        <li><strong>Recent trip:</strong> Add trail or peak name…</li>
+        <li><strong>Routes:</strong> Link to GPX/KML or CalTopo maps.</li>
+        <li><strong>Photos:</strong> Add a gallery link or album.</li>
       </ul>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Drop a message. This demo uses Formspree—replace the action URL with your own.</p>
-      <form class="contact" action="https://formspree.io/f/your-form-id" method="POST">
-        <label for="name">Name</label>
-        <input id="name" name="name" required />
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required />
-        <label for="msg">Message</label>
-        <textarea id="msg" name="message" rows="5" required></textarea>
-        <button type="submit" class="btn">Send</button>
-      </form>
-      <p class="muted">Prefer email? yourname [at] example.com</p>
+    <section id="reading" class="stripe-reading">
+      <h2>Reading</h2>
+      <ul class="clean">
+        <li><strong>Currently:</strong> Add a book/article here…</li>
+        <li><strong>Notes:</strong> Link to a note file or external doc.</li>
+        <li><strong>Archive:</strong> Past reading lists.</li>
+      </ul>
     </section>
-  </main>
 
-  <footer class="container footer">
-    <p>© <span id="year"></span> Your Name. Built on GitHub Pages.</p>
-  </footer>
+    <section id="about" class="stripe-about">
+      <h2>About</h2>
+      <p>One paragraph about you. Keep it friendly and concrete. Add a contact line like <span class="muted">grace [at] example [dot] com</span> or a contact form on a separate page later.</p>
+    </section>
+
+    <footer>
+      <a class="backtop" href="#top">↑ Back to top</a>
+      <div>© <span id="y"></span> Grace Jiang</div>
+      <div class="muted">Built with plain HTML/CSS. Hosted on GitHub Pages.</div>
+    </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+
+    document.querySelectorAll('.thumb-wrap, .video-thumb').forEach(el => {
+      el.addEventListener('click', () => {
+        lightboxContent.innerHTML = '';
+        if (el.classList.contains('thumb-wrap')) {
+          const img = el.querySelector('img');
+          const clone = img.cloneNode(true);
+          clone.style.width = '100%';
+          clone.style.height = 'auto';
+          lightboxContent.appendChild(clone);
+        } else {
+          const video = el.querySelector('video');
+          if (video) {
+            const clone = video.cloneNode(true);
+            clone.controls = true;
+            clone.autoplay = true;
+            clone.style.width = '100%';
+            clone.style.height = 'auto';
+            lightboxContent.appendChild(clone);
+          }
+        }
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxContent.innerHTML = '';
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.style.display = 'none';
+        lightboxContent.innerHTML = '';
+      }
+    });
   </script>
 </body>
 </html>
