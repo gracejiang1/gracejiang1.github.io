@@ -1,8 +1,10 @@
 # Site context for Claude Code
 
 This is Grace Jiang's personal website: a single-file, minimalist, old-school personal
-site (`index.html`) hosted free on GitHub Pages at `<username>.github.io`. Please read
-this before making changes, and follow it the same way you'd follow a style guide.
+site (`index.html`) hosted free on GitHub Pages at `<username>.github.io`, with a
+custom domain `gracej.org` pointed at it via the repo's `CNAME` file (DNS records live
+with the domain registrar, outside this repo). Please read this before making changes,
+and follow it the same way you'd follow a style guide.
 
 ## Hard constraints — do not deviate without being asked
 
@@ -63,11 +65,12 @@ this before making changes, and follow it the same way you'd follow a style guid
 
 ## Structure / current state
 
-- **Header**: name + one-line welcome.
+- **Header**: name ("Grace Jiang") + one-line welcome.
 - **Nav**: "Skip to section:" label + a grid of tile links (`.tiles` / `.tile`), one
-  per section, in the order Trip Reports, Misc Projects, Reading, About (EE Projects,
-  Reading, and About tiles are currently hidden, see below). Tiles show **title only**,
-  no blurb underneath (blurbs were intentionally removed).
+  per section, order Trip Reports, Misc Projects, Reading, About, plus EE Projects.
+  **The entire `<main>` nav block is currently wrapped in `<!-- -->` and hidden** —
+  temporary, uncomment when ready to bring section-jump nav back. Tiles show **title
+  only**, no blurb underneath (blurbs were intentionally removed).
 - **EE Projects**: hidden from public view — both the nav tile and the full section
   are wrapped in `<!-- -->` comments, not deleted. Uncomment both together when ready
   to publish. Content is grouped by year (`.year` divs with `.year-heading`).
