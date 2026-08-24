@@ -10,12 +10,38 @@ this before making changes, and follow it the same way you'd follow a style guid
   `.css`/`.js` files, no build step, no frameworks (no React, no Bootstrap).
 - **GitHub Pages compatible** — relative asset paths only (`images/...`, `videos/...`,
   `trip-reports/...`), no server-side anything.
+- **Asset filenames are case-sensitive on GitHub Pages** even though this is usually
+  authored on Windows, which isn't. A reference/file case mismatch (e.g. `.mov` vs
+  `.MOV`) works fine locally and silently 404s once live — this has actually happened
+  (`rubens_tube.MOV` vs a `.mov` reference). When adding or referencing an asset,
+  double-check the on-disk filename case matches the `src`/`href` exactly.
 - **Make the smallest reasonable edit.** Don't redesign or reformat unrelated sections
   when asked for a small change.
 - **Never replace existing content with placeholder comments** like
   `<!-- existing content preserved -->`. If something needs to move or be hidden,
   actually keep the real markup (see the EE Projects section for the pattern: it's
   wrapped in an HTML comment, not deleted, so it can be restored later).
+
+## Working style — stay focused, don't rabbit-hole
+
+- **This is a zero-build static site on purpose.** Don't install or reach for new
+  tooling (npm/node, chromium-cli, headless browsers, image libraries, etc.) to verify
+  a change unless explicitly asked to. If something isn't obviously working, apply the
+  most likely fix directly and have the user confirm in their own browser, rather than
+  standing up infrastructure to prove it first.
+- **Diagnose in a few steps, then act.** If a bug investigation is several tool calls in
+  without a clear answer, stop investigating and apply the most likely fix instead of
+  building more verification harnesses (test-copy HTML files, screenshot scripts, etc.)
+  for what's usually a small CSS/layout issue. Cheap, reversible fixes don't need proof
+  before applying — the user can eyeball the real page after a push.
+- **When the user redirects mid-task, drop the current approach immediately.** A steer
+  like "just do X" or "refocus" means stop the current path now, not finish the
+  tangent "just to be sure" first.
+- **Match effort to blast radius.** No build pipeline, no tests, easy to revert — most
+  changes here are cheap to try. Don't over-engineer verification for something the
+  user can check themselves in a few seconds.
+- **Clean up scratch/test files you create for debugging** (temp HTML copies, staging
+  folders) — don't leave them in the repo or scratchpad past the task that needed them.
 
 ## Aesthetic
 
@@ -39,12 +65,15 @@ this before making changes, and follow it the same way you'd follow a style guid
 
 - **Header**: name + one-line welcome.
 - **Nav**: "Skip to section:" label + a grid of tile links (`.tiles` / `.tile`), one
-  per section, in the order Trip Reports, Misc Projects, Reading, About (EE Projects
-  tile is hidden, see below). Tiles show **title only**, no blurb underneath (blurbs
-  were intentionally removed).
+  per section, in the order Trip Reports, Misc Projects, Reading, About (EE Projects,
+  Reading, and About tiles are currently hidden, see below). Tiles show **title only**,
+  no blurb underneath (blurbs were intentionally removed).
 - **EE Projects**: hidden from public view — both the nav tile and the full section
   are wrapped in `<!-- -->` comments, not deleted. Uncomment both together when ready
   to publish. Content is grouped by year (`.year` divs with `.year-heading`).
+- **Reading** and **About**: also currently hidden the same way (nav tile + section
+  wrapped in `<!-- -->`, not deleted) — temporary, uncomment each pair together when
+  ready to publish. Placeholder content only, not yet written.
 - **Trip Reports** (was "Hiking" — renamed everywhere: id, CSS class/var, folder):
   homepage section is a `.trip-grid` of `.trip-box` link-tiles (same visual language
   as the main nav tiles: border, drop shadow, teal stripe), positioned first, above
@@ -58,15 +87,16 @@ this before making changes, and follow it the same way you'd follow a style guid
   trips over time, added incrementally.
 - **Misc Projects**: grouped by year, uses `.project-card` (thumbnail + text). Two
   2018 entries (MasSpec Pen, two-photon microscopy) intentionally share one "2018"
-  year heading rather than repeating it.
+  year heading rather than repeating it. **MasSpec Pen thumbnail is currently broken**
+  — `index.html` references `images/masspec.jpg` but the file was never added to the
+  repo; needs the actual photo dropped into `images/` before it'll show.
 - **Photo/video cards**: 120×120px square thumbnails, black border, `object-fit:
   cover`. Images sit in a `.thumb-wrap` div (needed because hover overlays can't be
   pseudo-elements on `<img>` directly). Hover = semi-transparent white overlay, no
-  resizing. Click = lightbox at ~50% screen size with dark page overlay; Escape or
-  clicking the overlay closes it. Video thumbnails use the same square format, no
+  resizing. Click = lightbox with dark page overlay, image/video scaled to fit within
+  90vw/90vh (preserves aspect ratio, no forced-width overflow on portrait photos);
+  Escape or clicking the overlay closes it. Video thumbnails use the same square format, no
   native browser controls in the thumbnail, small (~24px) dark translucent play
   button bottom-right; click opens the same lightbox with real controls + autoplay.
-- **Reading**: placeholder content, comes after Misc Projects.
-- **About**: placeholder content, comes after Reading.
 - **Footer**: single "↑ Back to top" link (only one, at the very end — not repeated
   per section), auto-updating copyright year via JS, "Hosted on GitHub Pages."
