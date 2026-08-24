@@ -16,14 +16,14 @@
       --tile: #ffffff;
       --shadow:#bdbdbd;
       --maxw: 760px;
-      --hiking: #00695C;
+      --trip-reports: #00695C;
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia, serif;}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
 
     .backlink{display:inline-block;margin-bottom:16px;color:var(--link);}
 
-    header{border-bottom:2px solid var(--line);border-left:10px solid var(--hiking);padding:16px 0 16px 14px;margin-bottom:24px;}
+    header{border-bottom:2px solid var(--line);border-left:10px solid var(--trip-reports);padding:16px 0 16px 14px;margin-bottom:24px;}
     header h1{font-size:26px;margin:0 0 6px 0;}
     header p{margin:0;color:var(--ink-soft);}
 
@@ -32,13 +32,23 @@
     article ul.clean{list-style:square;padding-left:18px;margin:0 0 14px 0;}
     article li + li{margin-top:6px;}
 
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,120px);gap:10px;margin:12px 0 0;}
+    .thumb-wrap{width:120px;height:120px;border:2px solid var(--line);position:relative;overflow:hidden;cursor:pointer;transition:box-shadow 0.3s ease;}
+    .thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+    .thumb-wrap:hover{box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+    .thumb-wrap:hover::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.4);}
+
+    .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:9999;}
+    .lightbox-content{max-width:50%;max-height:50%;}
+    .lightbox-content img{width:100%;height:auto;}
+
     footer{border-top:2px solid var(--line);margin-top:40px;padding-top:12px;color:#444;font-size:14px;}
     .backtop{display:inline-block;color:var(--link);}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <a class="backlink" href="../index.html#hiking">← Back to Hiking</a>
+    <a class="backlink" href="../index.html#trip-reports">← Back to Trip Reports</a>
 
     <header>
       <h1>Twin Lakes (Caving)</h1>
@@ -53,6 +63,16 @@
       </ul>
 
       <p>We spent Saturday caving with a small crew of 7 — Carl (organizer), Matt, Nick, Ethan, Sri, Philip (first trip!) and I. This was the smallest group I've ever caved with, and I had a good feeling about the cave despite knowing very little. In fact, the first thing I learned was that Carl intended for us to do three caves. As luck would have it, we couldn't find Cave 1 and so settled for two. Meander Cave and 123 Cave were very different from each other and so made for fantastic beginner caves for Philip. He got to experience some great stemming and crawling and was a natural. Overall a comfortable trip as I had met everyone at least once before, and we got to spend time at the lake afterward. Bonus: Miner the dog!</p>
+
+      <div class="photo-grid">
+        <div class="thumb-wrap"><img src="images/twin-lakes-2026/twinlakes-01.jpg" alt="Twin Lakes trip photo 1"></div>
+        <div class="thumb-wrap"><img src="images/twin-lakes-2026/twinlakes-02.jpg" alt="Twin Lakes trip photo 2"></div>
+        <div class="thumb-wrap"><img src="images/twin-lakes-2026/twinlakes-03.jpg" alt="Twin Lakes trip photo 3"></div>
+        <div class="thumb-wrap"><img src="images/twin-lakes-2026/twinlakes-04.jpg" alt="Twin Lakes trip photo 4"></div>
+        <div class="thumb-wrap"><img src="images/twin-lakes-2026/twinlakes-05.jpg" alt="Twin Lakes trip photo 5"></div>
+        <div class="thumb-wrap"><img src="images/twin-lakes-2026/twinlakes-06.jpg" alt="Twin Lakes trip photo 6"></div>
+        <div class="thumb-wrap"><img src="images/twin-lakes-2026/twinlakes-07.jpg" alt="Twin Lakes trip photo 7"></div>
+      </div>
 
       <h2>Getting there</h2>
       <p>We started driving at around 8 PM and made it to the trailhead around 2 AM. Plenty of potholes and rocks, but manageable. Camped nearby and got around 3.5 hours of sleep in the end. Started walking a flat trail around 8 AM, playing with Miner the dog. She's the cutest ¾ border collie mix with the energy of 4 border collies on steroids. We played a LOT of fetch.</p>
@@ -80,8 +100,40 @@
 
     <footer>
       <a class="backtop" href="#top">↑ Back to top</a>
-      <div><a href="../index.html#hiking">← Back to Hiking</a></div>
+      <div><a href="../index.html#trip-reports">← Back to Trip Reports</a></div>
     </footer>
   </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+
+    document.querySelectorAll('.thumb-wrap').forEach(el => {
+      el.addEventListener('click', () => {
+        lightboxContent.innerHTML = '';
+        const img = el.querySelector('img');
+        const clone = img.cloneNode(true);
+        clone.style.width = '100%';
+        clone.style.height = 'auto';
+        lightboxContent.appendChild(clone);
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxContent.innerHTML = '';
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.style.display = 'none';
+        lightboxContent.innerHTML = '';
+      }
+    });
+  </script>
 </body>
 </html>

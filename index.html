@@ -18,7 +18,7 @@
       --maxw: 760px;
       --ee: #2E7D32;
       --misc: #8B4513;
-      --hiking: #00695C;
+      --trip-reports: #00695C;
       --reading: #1E3A8A;
       --about: #5A5A5A;
     }
@@ -39,7 +39,7 @@
     .tile[class*="stripe-"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px}
     .tile.stripe-ee::before{background:var(--ee)}
     .tile.stripe-misc::before{background:var(--misc)}
-    .tile.stripe-hiking::before{background:var(--hiking)}
+    .tile.stripe-trip-reports::before{background:var(--trip-reports)}
     .tile.stripe-reading::before{background:var(--reading)}
     .tile.stripe-about::before{background:var(--about)}
 
@@ -48,7 +48,7 @@
     section[class*="stripe-"]{border-left:10px solid var(--line);padding-left:14px}
     section.stripe-ee{border-left-color:var(--ee)}
     section.stripe-misc{border-left-color:var(--misc)}
-    section.stripe-hiking{border-left-color:var(--hiking)}
+    section.stripe-trip-reports{border-left-color:var(--trip-reports)}
     section.stripe-reading{border-left-color:var(--reading)}
     section.stripe-about{border-left-color:var(--about)}
 
@@ -67,7 +67,7 @@
     .trip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:8px 0 0;}
     .trip-box{position:relative;display:block;background:var(--tile);border:2px solid var(--line);padding:16px 16px 16px 20px;text-decoration:none;color:var(--ink);
       box-shadow:6px 6px 0 var(--shadow);overflow:hidden}
-    .trip-box::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--hiking)}
+    .trip-box::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--trip-reports)}
     .trip-box:hover{background:#f7f7f7}
     .trip-box h3{margin:0;font-size:16px;}
 
@@ -122,11 +122,11 @@
           <h2>EE Projects</h2>
         </a>
         -->
+        <a class="tile stripe-trip-reports" href="#trip-reports">
+          <h2>Trip Reports</h2>
+        </a>
         <a class="tile stripe-misc" href="#misc-projects">
           <h2>Misc Projects</h2>
-        </a>
-        <a class="tile stripe-hiking" href="#hiking">
-          <h2>Hiking</h2>
         </a>
         <a class="tile stripe-reading" href="#reading">
           <h2>Reading</h2>
@@ -170,6 +170,14 @@
     </section>
     -->
 
+    <section id="trip-reports" class="stripe-trip-reports">
+      <h2>Trip Reports</h2>
+      <div class="trip-grid">
+        <a class="trip-box" href="trip-reports/avalanche-cave-2026.html"><h3>Avalanche Cave — July 2026</h3></a>
+        <a class="trip-box" href="trip-reports/twin-lakes-2026.html"><h3>Twin Lakes (Caving) — August 2026</h3></a>
+      </div>
+    </section>
+
     <section id="misc-projects" class="stripe-misc">
       <h2>Misc Projects</h2>
       <div class="year" id="misc2025">
@@ -211,14 +219,6 @@
           </div>
         </div>
       </div>
-      </div>
-    </section>
-
-    <section id="hiking" class="stripe-hiking">
-      <h2>Hiking</h2>
-      <div class="trip-grid">
-        <a class="trip-box" href="hiking/avalanche-cave-2026.html"><h3>Avalanche Cave — July 2026</h3></a>
-        <a class="trip-box" href="hiking/twin-lakes-2026.html"><h3>Twin Lakes (Caving) — August 2026</h3></a>
       </div>
     </section>
 

@@ -16,19 +16,29 @@
       --tile: #ffffff;
       --shadow:#bdbdbd;
       --maxw: 760px;
-      --hiking: #00695C;
+      --trip-reports: #00695C;
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia, serif;}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
 
     .backlink{display:inline-block;margin-bottom:16px;color:var(--link);}
 
-    header{border-bottom:2px solid var(--line);border-left:10px solid var(--hiking);padding:16px 0 16px 14px;margin-bottom:24px;}
+    header{border-bottom:2px solid var(--line);border-left:10px solid var(--trip-reports);padding:16px 0 16px 14px;margin-bottom:24px;}
     header h1{font-size:26px;margin:0 0 6px 0;}
     header p{margin:0;color:var(--ink-soft);}
 
     article h2{font-size:19px;margin:32px 0 8px 0;border-bottom:2px solid var(--line);padding-bottom:4px;}
     article p{margin:0 0 14px 0;}
+
+    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,120px);gap:10px;margin:12px 0 0;}
+    .thumb-wrap{width:120px;height:120px;border:2px solid var(--line);position:relative;overflow:hidden;cursor:pointer;transition:box-shadow 0.3s ease;}
+    .thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+    .thumb-wrap:hover{box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+    .thumb-wrap:hover::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.4);}
+
+    .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:9999;}
+    .lightbox-content{max-width:50%;max-height:50%;}
+    .lightbox-content img{width:100%;height:auto;}
 
     footer{border-top:2px solid var(--line);margin-top:40px;padding-top:12px;color:#444;font-size:14px;}
     .backtop{display:inline-block;color:var(--link);}
@@ -36,7 +46,7 @@
 </head>
 <body>
   <div class="wrap">
-    <a class="backlink" href="../index.html#hiking">← Back to Hiking</a>
+    <a class="backlink" href="../index.html#trip-reports">← Back to Trip Reports</a>
 
     <header>
       <h1>Avalanche Cave</h1>
@@ -45,6 +55,17 @@
 
     <article>
       <p>Avalanche Cave is a small-ish spot with a couple squeezes in between entrances. I managed to do a thru trip and learn what helictites were.</p>
+
+      <div class="photo-grid">
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-01.jpg" alt="Avalanche Cave photo 1"></div>
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-02.jpg" alt="Avalanche Cave photo 2"></div>
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-03.jpg" alt="Avalanche Cave photo 3"></div>
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-04.jpg" alt="Avalanche Cave photo 4"></div>
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-05.jpg" alt="Avalanche Cave photo 5"></div>
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-06.jpg" alt="Avalanche Cave photo 6"></div>
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-07.jpg" alt="Avalanche Cave photo 7"></div>
+        <div class="thumb-wrap"><img src="images/avalanche-cave-2026/avalanche-08.jpg" alt="Avalanche Cave photo 8"></div>
+      </div>
 
       <h2>Getting there</h2>
       <p>This cave was hard to get to — a 3h drive up to Grass Valley and additional 1.5h on a very bumpy logging road filled with rocks. Probably the bumpiest ride I ever took to a trailhead, and I've taken a lot.</p>
@@ -67,8 +88,40 @@
 
     <footer>
       <a class="backtop" href="#top">↑ Back to top</a>
-      <div><a href="../index.html#hiking">← Back to Hiking</a></div>
+      <div><a href="../index.html#trip-reports">← Back to Trip Reports</a></div>
     </footer>
   </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+
+    document.querySelectorAll('.thumb-wrap').forEach(el => {
+      el.addEventListener('click', () => {
+        lightboxContent.innerHTML = '';
+        const img = el.querySelector('img');
+        const clone = img.cloneNode(true);
+        clone.style.width = '100%';
+        clone.style.height = 'auto';
+        lightboxContent.appendChild(clone);
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxContent.innerHTML = '';
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.style.display = 'none';
+        lightboxContent.innerHTML = '';
+      }
+    });
+  </script>
 </body>
 </html>
