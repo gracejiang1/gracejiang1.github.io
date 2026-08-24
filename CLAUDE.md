@@ -2,9 +2,10 @@
 
 This is Grace Jiang's personal website: a single-file, minimalist, old-school personal
 site (`index.html`) hosted free on GitHub Pages at `<username>.github.io`, with a
-custom domain `gracej.org` pointed at it via the repo's `CNAME` file (DNS records live
-with the domain registrar, outside this repo). Please read this before making changes,
-and follow it the same way you'd follow a style guide.
+custom domain `gracejiang.net` pointed at it via the repo's `CNAME` file (DNS records
+live with the domain registrar, outside this repo — `gracej.org` was the original plan
+but its DNS was never pointed here; `gracejiang.net` is what's actually live). Please
+read this before making changes, and follow it the same way you'd follow a style guide.
 
 ## Hard constraints — do not deviate without being asked
 
