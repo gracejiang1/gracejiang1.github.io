@@ -35,7 +35,6 @@
     .tile{position:relative;display:block;background:var(--tile);border:2px solid var(--line);padding:16px 16px 16px 20px;text-decoration:none;color:var(--ink);
       box-shadow:6px 6px 0 var(--shadow);overflow:hidden}
     .tile h2{margin:0 0 6px 0;font-size:18px;}
-    .tile p{margin:0;color:var(--ink-soft);}    
     .tile:hover{background:#f7f7f7}
     .tile[class*="stripe-"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px}
     .tile.stripe-ee::before{background:var(--ee)}
@@ -65,6 +64,13 @@
       header h1{font-size:24px}
       .tile{padding:14px 14px 14px 18px}
     }
+    .trip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:8px 0 0;}
+    .trip-box{position:relative;display:block;background:var(--tile);border:2px solid var(--line);padding:16px 16px 16px 20px;text-decoration:none;color:var(--ink);
+      box-shadow:6px 6px 0 var(--shadow);overflow:hidden}
+    .trip-box::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--hiking)}
+    .trip-box:hover{background:#f7f7f7}
+    .trip-box h3{margin:0;font-size:16px;}
+
     .year + .year{ margin-top:24px; }
     .year-heading{ font-size:18px; margin:10px 0 6px 0; display:inline-block; border-bottom:2px solid var(--line); padding:0 6px 2px 0; }
 
@@ -111,29 +117,27 @@
     <main>
       <div class="skip-label">Skip to section:</div>
       <div class="tiles">
+        <!--
         <a class="tile stripe-ee" href="#ee-projects">
           <h2>EE Projects</h2>
-          <p>Electronics, test rigs, and signal work (magic smoke included).</p>
         </a>
+        -->
         <a class="tile stripe-misc" href="#misc-projects">
           <h2>Misc Projects</h2>
-          <p>More things I'm proud of.</p>
         </a>
         <a class="tile stripe-hiking" href="#hiking">
           <h2>Hiking</h2>
-          <p>Trips, routes, and maps.</p>
         </a>
         <a class="tile stripe-reading" href="#reading">
           <h2>Reading</h2>
-          <p>Notes, highlights, and what I’m into lately.</p>
         </a>
         <a class="tile stripe-about" href="#about">
           <h2>About</h2>
-          <p>Short intro and how to reach me.</p>
         </a>
       </div>
     </main>
 
+    <!--
     <section id="ee-projects" class="stripe-ee">
       <h2>EE Projects</h2>
       <div class="year" id="ee2025">
@@ -164,6 +168,7 @@
         </ul>
       </div>
     </section>
+    -->
 
     <section id="misc-projects" class="stripe-misc">
       <h2>Misc Projects</h2>
@@ -211,11 +216,11 @@
 
     <section id="hiking" class="stripe-hiking">
       <h2>Hiking</h2>
-      <ul class="clean">
-        <li><strong>Recent trip:</strong> Add trail or peak name…</li>
-        <li><strong>Routes:</strong> Link to GPX/KML or CalTopo maps.</li>
-        <li><strong>Photos:</strong> Add a gallery link or album.</li>
-      </ul>
+      <div class="trip-grid">
+        <a class="trip-box" href="hiking/example-trip-1.html"><h3>Example Trip 1</h3></a>
+        <a class="trip-box" href="hiking/example-trip-2.html"><h3>Example Trip 2</h3></a>
+        <a class="trip-box" href="hiking/example-trip-3.html"><h3>Example Trip 3</h3></a>
+      </div>
     </section>
 
     <section id="reading" class="stripe-reading">
@@ -229,13 +234,13 @@
 
     <section id="about" class="stripe-about">
       <h2>About</h2>
-      <p>One paragraph about you. Keep it friendly and concrete. Add a contact line like <span class="muted">grace [at] example [dot] com</span> or a contact form on a separate page later.</p>
+      <p>To fill</p>
     </section>
 
     <footer>
       <a class="backtop" href="#top">↑ Back to top</a>
       <div>© <span id="y"></span> Grace Jiang</div>
-      <div class="muted">Built with plain HTML/CSS. Hosted on GitHub Pages.</div>
+      <div class="muted">Hosted on GitHub Pages.</div>
     </footer>
   </div>
 
