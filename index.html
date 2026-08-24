@@ -21,6 +21,7 @@
       --trip-reports: #00695C;
       --reading: #1E3A8A;
       --about: #5A5A5A;
+      --lists: #8A6D1D;
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia, serif;}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
@@ -42,6 +43,7 @@
     .tile.stripe-trip-reports::before{background:var(--trip-reports)}
     .tile.stripe-reading::before{background:var(--reading)}
     .tile.stripe-about::before{background:var(--about)}
+    .tile.stripe-lists::before{background:var(--lists)}
 
     section{border-top:2px solid var(--line);margin-top:40px;padding-top:20px;background:var(--tile);} 
     section h2{margin:0 0 8px 0;font-size:22px;}
@@ -51,6 +53,7 @@
     section.stripe-trip-reports{border-left-color:var(--trip-reports)}
     section.stripe-reading{border-left-color:var(--reading)}
     section.stripe-about{border-left-color:var(--about)}
+    section.stripe-lists{border-left-color:var(--lists)}
 
     .backtop{display:inline-block;margin-top:12px;color:var(--link);}    
 
@@ -111,7 +114,7 @@
   <div class="wrap">
     <header>
       <h1>Grace Jiang</h1>
-      <p>Welcome! I like to do things.</p>
+      <p>Hello! What do you find beautiful? What's your current rabbit hole? I want to know.</p>
     </header>
 
     <!--
@@ -132,6 +135,9 @@
         </a>
         <a class="tile stripe-about" href="#about">
           <h2>About</h2>
+        </a>
+        <a class="tile stripe-lists" href="#lists">
+          <h2>Lists</h2>
         </a>
       </div>
     </main>
@@ -243,6 +249,44 @@
       <p>To fill</p>
     </section>
     -->
+
+    <section id="lists" class="stripe-lists">
+      <h2>Lists</h2>
+      <div class="year" id="lists-bucket">
+        <h3 class="year-heading">Bucket List</h3>
+        <ul class="clean">
+          <li>I want to go to the Sawtooth Mountains in Idaho one day.</li>
+          <li>I want to hike the JMT.</li>
+          <li>I want to summit Shasta (made it to Short Hill in 2026).</li>
+          <li>I want to see Iceland, Patagonia, and the Dolomites.</li>
+          <li>I want to see a quetzal.</li>
+          <li>I want to finish a painting of a loop of ospreys intersecting with a loop of fish, right as the bird grabs its prey.</li>
+          <li>I want to design and carve a seal.</li>
+          <li>I want to draw something and get it tattooed.</li>
+          <li>I want to make a tiny scale model of a gothic cathedral.</li>
+          <li>I want to visit Florence and see the Brunelleschi Dome.</li>
+          <li>I want to do some of Faraday's experiments.</li>
+          <li>I want to make an interferometer.</li>
+          <li>I want to do more plein-air with gouache.</li>
+          <li>I want to cook something extravagant on a hike.</li>
+          <li>I want to see the Perseids again.</li>
+          <li>I want to see a total solar eclipse.</li>
+          <li>I want to take another photo of Orion's Nebula and compare it to an old photo.</li>
+        </ul>
+      </div>
+      <div class="year" id="lists-reading">
+        <h3 class="year-heading">Reading List</h3>
+        <p>Have always loved sci-fi and nonfiction. Currently into memoirs. I try hard not to turn down a book prematurely, as I've always been surprised — but I accept I'll never be able to read everything. I also have a list of short stories I recommend to friends.</p>
+        <ul class="clean">
+          <li>The Martian Chronicles</li>
+          <li>Permutation City</li>
+          <li>Three-Body Problem</li>
+          <li>Anathem</li>
+          <li>Sphereland</li>
+          <li>Medusa and the Snail</li>
+        </ul>
+      </div>
+    </section>
 
     <footer>
       <a class="backtop" href="#top">↑ Back to top</a>

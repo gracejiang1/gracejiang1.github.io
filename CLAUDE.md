@@ -60,6 +60,7 @@ read this before making changes, and follow it the same way you'd follow a style
   - Misc Projects: `#8B4513`
   - Reading: `#1E3A8A`
   - About: `#5A5A5A`
+  - Lists: `#8A6D1D`
 - Keep spacing airy but compact — don't blow out whitespace. Current rough values:
   sections `margin-top: 40px` / `padding-top: 20px`; years within a section ~24px
   apart; project cards ~14px vertical margin.
@@ -68,9 +69,9 @@ read this before making changes, and follow it the same way you'd follow a style
 
 - **Header**: name ("Grace Jiang") + one-line welcome.
 - **Nav**: "Skip to section:" label + a grid of tile links (`.tiles` / `.tile`), one
-  per section, order Trip Reports, Misc Projects, Reading, About, plus EE Projects.
-  **The entire `<main>` nav block is currently wrapped in `<!-- -->` and hidden** —
-  temporary, uncomment when ready to bring section-jump nav back. Tiles show **title
+  per section, order Trip Reports, Misc Projects, Reading, About, Lists, plus EE
+  Projects. **The entire `<main>` nav block is currently wrapped in `<!-- -->` and
+  hidden** — temporary, uncomment when ready to bring section-jump nav back. Tiles show **title
   only**, no blurb underneath (blurbs were intentionally removed).
 - **EE Projects**: hidden from public view — both the nav tile and the full section
   are wrapped in `<!-- -->` comments, not deleted. Uncomment both together when ready
@@ -102,5 +103,10 @@ read this before making changes, and follow it the same way you'd follow a style
   Escape or clicking the overlay closes it. Video thumbnails use the same square format, no
   native browser controls in the thumbnail, small (~24px) dark translucent play
   button bottom-right; click opens the same lightbox with real controls + autoplay.
+- **Lists**: last visible section (comes after the hidden Reading/About block, right
+  before the footer). Two `.year`-style sub-groups reusing the `.year-heading` label
+  style (not actually years, just the same visual convention for a labeled subsection):
+  "Bucket List" (plain `<li>` items) and "Reading List" (intro paragraph + `<li>` book
+  titles, no links).
 - **Footer**: single "↑ Back to top" link (only one, at the very end — not repeated
   per section), auto-updating copyright year via JS, "Hosted on GitHub Pages."
